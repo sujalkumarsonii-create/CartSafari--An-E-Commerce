@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container-fluid p-4 mt-3">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="card card-sh">
+						<div class="card-header text-center bg-primary fs-4">
+							Edit Categories
+							<th:block th:if="${session.success}">
+								<p class="text-success fw-bold">[[${session.success}]]</p>
+								<th:block th:text="${@commonServiceImp.removeSessionMessage()}"></th:block>
+							</th:block>
+
+							<th:block th:if="${session.errmsg}">
+								<p class="text-danger fw-bold">[[${session.errmsg}]]</p>
+								<th:block th:text="${@commonServiceImp.removeSessionMessage()}"></th:block>
+							</th:block>
+
+						</div>
+						<div class="card-body">
+							<form action="/admin/updateCategory" method="post"
+								enctype="multipart/form-data">
+								
+								<input type="hidden" name="id" th:value="${category.id}">
+								
+								<div class="mb-3">
+									<label>Enter Category</label> <input type="text"
+										th:value="${category.name}" class="form-control" name="name">
+								</div>
+
+								<div class="mb-3">
+									<label>Enter Status</label>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="isActive"
+											id="radioDefault1" th:checked="${category.isActive==true}"
+											value="true"> <label class="form-check-label"
+											for="radioDefault1"> Active </label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="isActive"
+											id="radioDefault2" th:checked="${category.isActive==falsee}"
+											value="false"> <label class="form-check-label"
+											for="radioDefault2"> Inactive </label>
+									</div>
+
+								</div>
+
+								<div class="mb-3">
+									<label>Upload Image</label> <input type="file"
+										class="form-control" name="file">
+								</div>
+								<img th:src="@{'/uploads/category/' + ${category.imageName}}"
+									width="100px" height="100px">
+
+								<button class="btn btn-primary col-md-12 text-center">Update</button>
+							</form>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+</body>
+</html>

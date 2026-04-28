@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<p class="text-center fs-3 mt-3">ADMIN DASHBOARD</p>
+			<div class="row p-5">
+				<div class="col-md-4 ">
+					<a href="/admin/loadAddProduct" class="text-decoration-none">
+						<div class="card card-sh">
+							<div class="card-body text-center text-primary">
+								<i class="fa-solid fa-square-plus fa-2x text-primary"></i>
+								<h4>Add Product</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				
+				<div class="col-md-4">
+					<a href="/admin/category" class="text-decoration-none">
+						<div class="card card-sh">
+							<div class="card-body text-center text-info">
+								<i class="fa-solid fa-layer-group fa-2x"></i>
+								<h4>Add Category</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				
+				<div class="col-md-4">
+					<a href="/admin/products" class="text-decoration-none">
+						<div class="card card-sh">
+							<div class="card-body text-center text-warning">
+								<i class="fas fa-box-open icon fa-2x "></i>
+								<h4>View Products</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				
+				<div class="col-md-4 mt-4">
+					<a href="#" class="text-decoration-none">
+						<div class="card card-sh">
+							<div class="card-body text-center text-dark">
+								<i class="fas fa-clipboard-list fa-2x "></i>
+								<h4>Orders</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				
+				<div class="col-md-4 mt-4">
+					<a href="/admin/users" class="text-decoration-none">
+						<div class="card card-sh">
+							<div class="card-body text-center text-success">
+								<i class="fas fa-users icon fa-2x"></i>
+								<h4>Users</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				
+				<div class="col-md-4 mt-4">
+					<a href="#" class="text-decoration-none">
+						<div class="card card-sh text-danger">
+							<div class="card-body text-center">
+								<i class="fas fa-user-plus admin-icon fa-2x"></i>
+								<h4>Add Admin</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

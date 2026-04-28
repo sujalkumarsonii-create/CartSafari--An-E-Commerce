@@ -1,0 +1,31 @@
+@charset "UTF-8";
+.footer {
+  background: #30364F;
+  color: #F0F0DB;
+  padding: 30px 0;
+}
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.footer a {
+  color: #ACBAC4;
+  text-decoration: none;
+}
+.footer a:hover {
+  color: #F0F0DB;
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.card-sh {
+	box-shadow: 0 0 8px 0 rgba(0,0,0,0.3);
+}
+
+.cat-div{
+	box-shadow: 0 0 10px rgba(0,0,0, .1);
+}

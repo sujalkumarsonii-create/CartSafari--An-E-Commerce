@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container mt-4">
+			<div class="card shadow">
+				<div class="card-header bg-primary text-white text-center">
+					<h4>Your Cart</h4>
+				</div>
+
+				<div class="card-body">
+
+					<!-- Success Message -->
+					<th:block th:if="${session.success}">
+						<p class="text-success text-center fw-bold">[[${session.success}]]</p>
+						<th:block th:text="${@commonServiceImp.removeSessionMessage()}"></th:block>
+					</th:block>
+
+					<!-- Cart Table -->
+					<table class="table table-bordered text-center">
+						<thead class="table-light">
+							<tr>
+								<th>Sl No</th>
+								<th>Image</th>
+								<th>Product</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th>Total</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr th:each="cart, i : ${carts}">
+								<td>[[${i.count}]]</td>
+
+								<td><img
+									th:src="@{'/uploads/product/' + ${cart.product.image}}"
+									width="70" height="50"></td>
+
+								<td>[[${cart.product.title}]]</td>
+
+								<td>₹[[${cart.product.discountPrice}]]</td>
+
+								<!-- Quantity -->
+								<td class="text-center text-box"><a
+									th:href="@{'/user/cartQuantityUpdate?sy=minus&cid='+${cart.id}}"><i
+										class="fa-solid fa-minus"></i></a>&nbsp; [[${cart.quantity}]]
+									&nbsp;<a
+									th:href="@{'/user/cartQuantityUpdate?sy=plus&cid='+${cart.id}}"><i
+										class="fa-solid fa-plus"></i></a></td>
+
+								<!-- Total FIXED -->
+								<td>₹[[${cart.quantity * cart.product.discountPrice}]]</td>
+
+								<!-- Remove FIXED -->
+								<td><a th:href="@{'/user/removeCart/' + ${cart.id}}"
+									class="btn btn-danger btn-sm"> Remove </a></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+					<!-- Total Section -->
+					<div class="text-end fw-bold fs-4">
+						Total Price&nbsp; &nbsp;:&nbsp; &nbsp;
+							₹[[${totalOrderPrice}]]&nbsp; &nbsp; <br>
+						<a href="/user/orders" class="btn btn-success"> Proceed to
+							Checkout </a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>
