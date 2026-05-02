@@ -1,8 +1,8 @@
 package com.cartsafari.service;
 
-import com.cartsafari.model.ProductOrder;
+import com.cartsafari.model.OrderRequest;
 
 public interface OrderService {
 
-	public ProductOrder saveOrder(Integer orderId);
+	public void saveOrder(Integer userId, OrderRequest orderRequest);
 }

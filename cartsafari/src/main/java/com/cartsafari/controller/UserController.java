@@ -9,14 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cartsafari.model.Cart;
 import com.cartsafari.model.Category;
+import com.cartsafari.model.OrderRequest;
 import com.cartsafari.model.UserDetails;
 import com.cartsafari.service.CartService;
 import com.cartsafari.service.CategoryService;
+import com.cartsafari.service.OrderService;
 import com.cartsafari.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -33,6 +36,9 @@ public class UserController {
 
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private OrderService orderService;
 
 	@GetMapping("/")
 	public String home() {
@@ -92,5 +98,12 @@ public class UserController {
 	@GetMapping("/orders")
 	public String orderPage() {
 		return "/user/order";
+	}
+	
+	@PostMapping("/save-order")
+	public String saveOrder(@ModelAttribute OrderRequest request, Principal p) {
+		UserDetails user = getLoggedInUserDetails(p);
+		orderService.saveOrder(user.getId(), request);
+		return "/user/success";
 	}
 }
