@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Checkout</title>
+</head>
+<body>
+
+	<section>
+		<div class="container mt-4">
+			<div class="card shadow">
+				<div class="container my-5">
+
+					<h2 class="mb-4">Order Details</h2>
+
+					<!-- Order Summary -->
+					<div class="card mb-4 shadow-sm">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-4">
+									<h6>Order ID</h6>
+									<p>[[${order.get().orderId}]]</p>
+								</div>
+								<div class="col-md-4">
+									<h6>Order Date</h6>
+									<p>[[${order.get().orderDate}]]</p>
+								</div>
+								<div class="col-md-4">
+									<h6>Status</h6>
+									<span class="badge bg-success">Delivered</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<!-- Shipping Address -->
+						<div class="col-md-6">
+							<div class="card mb-4 shadow-sm">
+								<div class="card-body">
+									<h5>Shipping Address</h5>
+									<p>
+										[[${order.get().orderAddress.fullName}]] <br> 
+										[[${order.get().orderAddress.address}]] <br> 
+										[[${order.get().orderAddress.city}]] [[${order.get().orderAddress.state}]] 
+										<br> India - [[${order.get().orderAddress.pincode}]] <br>
+										Phone: [[${order.get().orderAddress.mobileNo}]]
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Payment Info -->
+						<div class="col-md-6">
+							<div class="card mb-4 shadow-sm">
+								<div class="card-body">
+									<h5>Payment Details</h5>
+									<p>
+										<strong>Method:</strong> [[${order.get().paymentType}]]
+									</p>
+									<p>
+										<strong>Amount:</strong> ₹[[${order.get().quantity * order.get().price}]]
+									</p>
+									<p>
+										<strong>Status:</strong> Paid
+									</p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<!-- Product Details -->
+					<div class="card mb-4 shadow-sm">
+						<div class="card-body">
+							<h5>Products</h5>
+
+							<table class="table table-bordered align-middle text-center">
+								<thead class="table-light">
+									<tr>
+										<th>Product</th>
+										<th>Name</th>
+										<th>Price</th>
+										<th>Quantity</th>
+										<th>Total</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td><img th:src="@{'/uploads/product/' + ${order.get().product.image}}"
+											class="img-fluid" alt="[[${order.get().product.title}]]"></td>
+										<td>[[${order.get().product.title}]]</td>
+										<td>₹[[${order.get().price}]]</td>
+										<td>[[${order.get().quantity}]]</td>
+										<td>₹[[${order.get().quantity * order.get().price}]]</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<!-- Order Timeline -->
+					<div class="card shadow-sm">
+						<div class="card-body">
+							<h5>Order Tracking</h5>
+
+							<ul class="timeline">
+								<li>Order Placed - [[${order.get().orderDate}]]</li>
+								<li>Shipped - 11 May 2026</li>
+								<li>Out for Delivery - 12 May 2026</li>
+								<li>Delivered - 13 May 2026</li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Back Button -->
+					<div class="mt-4">
+						<a href="/user/user-orders" class="btn btn-secondary">← Back to
+							Orders</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

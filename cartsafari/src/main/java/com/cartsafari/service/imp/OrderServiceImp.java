@@ -1,7 +1,8 @@
 package com.cartsafari.service.imp;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class OrderServiceImp implements OrderService {
 		for( Cart cart : carts) {
 			ProductOrder order = new ProductOrder();
 			order.setOrderId(UUID.randomUUID().toString());
-			order.setOrderDate(new Date());
+			order.setOrderDate(LocalDate.now());
 			
 			order.setProduct(cart.getProduct());
 			order.setPrice(cart.getProduct().getDiscountPrice());
@@ -58,4 +59,18 @@ public class OrderServiceImp implements OrderService {
 		}
 	}
 
+
+
+	@Override
+	public List<ProductOrder> getOrdersByUser(Integer userId) {
+		List<ProductOrder> orders = orderRepository.findByUserId(userId);
+		return orders;
+	}
+
+
+	@Override
+	public Optional<ProductOrder> findByProductId(Integer productOrderId, Integer userId) {
+		Optional<ProductOrder> order = orderRepository.findById(productOrderId);
+		return order;
+	}
 }

@@ -24,6 +24,7 @@
 							<div class="col-md-6">
 
 								<h5>Delivery Details</h5>
+								
 
 								<div class="mb-3">
 									<label>Full Name</label> <input type="text" name="fullName"
@@ -87,19 +88,19 @@
 												<tr>
 													<td>Total Item Price</td>
 													<td>:</td>
-													<td>&#8377; 987655</td>
+													<td>&#8377; [[${totalOrderPrice}]]</td>
 												</tr>
 
 												<tr>
 													<td>Handling Fee/Tax</td>
 													<td>:</td>
-													<td>&#8377; 987655</td>
+													<td>&#8377; [[${totalOrderPrice * 0.005}]]</td>
 												</tr>
 
 												<tr>
 													<td>Delivery Price</td>
 													<td>:</td>
-													<td>&#8377; 987655</td>
+													<td>&#8377; [[${quantity * 40}]]</td>
 												</tr>
 
 											</tbody>
@@ -108,7 +109,8 @@
 								</div>
 
 								<h5>Total Price</h5>
-								<h4 class="text-success">₹[[${totalPrice}]]</h4>
+								<h4 class="text-danger">₹ [[${totalOrderPrice + (totalOrderPrice * 0.005) + 
+															(quantity * 40)}]]</h4>
 
 								<button type="submit" class="btn btn-warning w-100 mt-3">
 									Place Order</button>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Checkout</title>
+</head>
+<body>
+
+	<section>
+		<div class="container mt-4">
+			<div class="card shadow">
+				<div class="container table-container">
+					<h2 class="mb-4 text-center">My Orders</h2>
+
+					<div class="card shadow-sm">
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-hover align-middle text-center">
+									<thead class="table-primary">
+										<tr>
+											<th>Order ID</th>
+											<th>Date</th>
+											<th>Product</th>
+											<th>Quantity</th>
+											<th>Amount</th>
+											<th>Payment</th>
+											<th>Status</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr th:each="o:${orders}">
+											<td>[[${o.id}]]</td>
+											<td>[[${o.orderDate}]]</td>
+											<td>[[${o.product.title}]]</td>
+											<td>[[${o.quantity}]]</td>
+											<td>[[${o.quantity * o.price}]]</td>
+											<td>[[${o.paymentType}]]</td>
+											<td><span class="badge bg-success status-badge">Delivered</span>
+											</td>
+											<td><a th:href="@{'/user/view_order/' + ${o.id}}"
+												class="btn btn-primary btn-sm">View</a></td>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>
